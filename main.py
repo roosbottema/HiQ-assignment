@@ -1,8 +1,22 @@
+import argparse
 from robot import Robot
+
+
+def config_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--test_file', type=str, required=False)
+    return parser
 
 if __name__ == "__main__":
     robot = Robot()
-    test_file = "test3.txt"
+
+    #choose test file in terminal:
+    parser = config_parser()
+    test_file = parser.parse_args().test_file
+
+    #or choose test file manually in code:
+    if test_file == None:
+        test_file = "test3.txt"
 
     with open(test_file, "r") as file:
         for line in file:
